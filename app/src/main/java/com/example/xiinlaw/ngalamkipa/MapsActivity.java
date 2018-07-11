@@ -261,16 +261,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         protected void onPostExecute(List<List<HashMap<String, String>>> lists) {
             super.onPostExecute(lists);
 
-            ArrayList points = null;
-            PolylineOptions polylineOptions = null;
+            ArrayList points = new ArrayList();
+            PolylineOptions polylineOptions = new PolylineOptions();
 
             String distance = "";
             String duration = "";
 
             for(int i = 0; i < lists.size();i++)
             {
-                points = new ArrayList();
-                polylineOptions = new PolylineOptions();
 
                 List<HashMap<String, String>> path = lists.get(i);
 
