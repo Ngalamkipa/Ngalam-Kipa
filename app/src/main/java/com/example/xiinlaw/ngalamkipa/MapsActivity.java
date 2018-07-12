@@ -190,24 +190,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onSuccess(Location location) {
                 lastlocation = location;
 
-                MarkerOptions markerOptions = new MarkerOptions()
-                        .position(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude()))
-                        .title("your location")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                currentMarker = mMap.addMarker(markerOptions);
+                if(lastlocation!=null) {
+                    MarkerOptions markerOptions = new MarkerOptions()
+                            .position(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude()))
+                            .title("your location")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    currentMarker = mMap.addMarker(markerOptions);
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude())));
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude())));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
 
-                //marker for destination
-                LatLng destinationLatLng = new LatLng(Double.parseDouble(Common.getLatGreen()),
-                        Double.parseDouble(Common.getLngGreen()));
-                currentMarker = mMap.addMarker(new MarkerOptions()
-                        .position(destinationLatLng)
-                        .title(Common.getPlaceName())
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                    //marker for destination
+                    LatLng destinationLatLng = new LatLng(Double.parseDouble(Common.getLatGreen()),
+                            Double.parseDouble(Common.getLngGreen()));
+                    currentMarker = mMap.addMarker(new MarkerOptions()
+                            .position(destinationLatLng)
+                            .title(Common.getPlaceName())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-                drawPath(lastlocation, Common.getLatGreen()+","+Common.getLngGreen());
+                    drawPath(lastlocation, Common.getLatGreen() + "," + Common.getLngGreen());
+                }
             }
         });
     }
